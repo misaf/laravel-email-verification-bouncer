@@ -1,5 +1,5 @@
 ---
-name: laravel-email-validation-bouncer-development
+name: laravel-email-verification-bouncer-development
 description: "Create, modify, review, or test the optional Bouncer driver in the package root. Trigger for BouncerEmailVerifier, BouncerServiceProvider, Bouncer API configuration, email-verification response mapping, HTTP retries or timeouts, and Bouncer driver tests."
 ---
 
@@ -7,22 +7,22 @@ description: "Create, modify, review, or test the optional Bouncer driver in the
 
 ## Workflow
 
-Use this skill together with `laravel-email-validation-development`, `laravel-best-practices`, and `pest-testing` whenever tests change. Before code changes, use Laravel Boost `application-info` and `search-docs`; consult current official Bouncer API documentation (https://docs.usebouncer.com) before changing response semantics.
+Use this skill together with `laravel-email-verification-development`, `laravel-best-practices`, and `pest-testing` whenever tests change. Before code changes, use Laravel Boost `application-info` and `search-docs`; consult current official Bouncer API documentation (https://docs.usebouncer.com) before changing response semantics.
 
 ## Module Boundary
 
 Treat `the package root` as an optional concrete provider.
 
-- Use namespace `Misaf\LaravelEmailValidationBouncer`.
+- Use namespace `Misaf\LaravelEmailVerificationBouncer`.
 - Own only `BouncerEmailVerifier`, its config, tests, and driver registration in `BouncerServiceProvider`.
-- Depend on `misaf/laravel-email-validation` and implement its `EmailVerifier` contract.
+- Depend on `misaf/laravel-email-verification` and implement its `EmailVerifier` contract.
 - Never move Bouncer HTTP logic, credentials, or dependencies into the core package.
 - Do not depend on other packages you do not need.
 
 ## Driver Semantics
 
 - Register the driver as `bouncer` through `EmailVerifierManager::extend()`.
-- Read `host` and `api_key` from `laravel-email-validation-bouncer` using typed configuration access.
+- Read `host` and `api_key` from `laravel-email-verification-bouncer` using typed configuration access.
 - Call Bouncer's real-time endpoint (`GET /v1.1/email/verify`) with the email as a query parameter and authenticate via the `x-api-key` header.
 - Keep the server-side verification `timeout` query parameter below the HTTP client timeout so slow verifications return a clean result instead of aborting the client request.
 - Map `deliverable` to `Deliverable`, `undeliverable` to `Undeliverable`, and `risky` to `Risky`.

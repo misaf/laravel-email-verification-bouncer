@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Misaf\LaravelEmailValidation\EmailVerifierManager;
-use Misaf\LaravelEmailValidation\Enums\EmailVerificationStatus;
-use Misaf\LaravelEmailValidationBouncer\BouncerEmailVerifier;
+use Misaf\LaravelEmailVerification\EmailVerifierManager;
+use Misaf\LaravelEmailVerification\Enums\EmailVerificationStatus;
+use Misaf\LaravelEmailVerificationBouncer\BouncerEmailVerifier;
 
 beforeEach(function (): void {
     config([
-        'laravel-email-validation-bouncer.host'    => 'https://api.usebouncer.test/v1.1/email/verify',
-        'laravel-email-validation-bouncer.api_key' => 'test-key',
+        'laravel-email-verification-bouncer.host'    => 'https://api.usebouncer.test/v1.1/email/verify',
+        'laravel-email-verification-bouncer.api_key' => 'test-key',
     ]);
 });
 
