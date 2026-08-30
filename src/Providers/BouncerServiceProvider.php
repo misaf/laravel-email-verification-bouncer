@@ -20,7 +20,9 @@ final class BouncerServiceProvider extends PackageServiceProvider
             ->name('laravel-email-verification-bouncer')
             ->hasConfigFile()
             ->hasInstallCommand(function (InstallCommand $command): void {
-                $command->askToStarRepoOnGitHub('misaf/laravel-email-verification-bouncer');
+                $command
+                    ->publishConfigFile()
+                    ->askToStarRepoOnGitHub('misaf/laravel-email-verification-bouncer');
             });
     }
 
